@@ -1,0 +1,47 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "go_default_library",
+    srcs = [
+        "chunker.go",
+        "database.go",
+        "dbstore.go",
+        "dpa.go",
+        "localstore.go",
+        "memstore.go",
+        "netstore.go",
+        "pyramid.go",
+        "swarmhasher.go",
+        "types.go",
+    ],
+    importpath = "github.com/ethereum/go-ethereum/swarm/storage",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//bmt:go_default_library",
+        "//common:go_default_library",
+        "//crypto/sha3:go_default_library",
+        "//log:go_default_library",
+        "//metrics:go_default_library",
+        "//rlp:go_default_library",
+        "//vendor/github.com/syndtr/goleveldb/leveldb:go_default_library",
+        "//vendor/github.com/syndtr/goleveldb/leveldb/iterator:go_default_library",
+        "//vendor/github.com/syndtr/goleveldb/leveldb/opt:go_default_library",
+    ],
+)
+
+go_test(
+    name = "go_default_test",
+    srcs = [
+        "chunker_test.go",
+        "common_test.go",
+        "dbstore_test.go",
+        "dpa_test.go",
+        "memstore_test.go",
+    ],
+    embed = [":go_default_library"],
+    deps = [
+        "//common:go_default_library",
+        "//crypto/sha3:go_default_library",
+        "//log:go_default_library",
+    ],
+)

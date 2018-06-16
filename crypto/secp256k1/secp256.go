@@ -18,6 +18,7 @@
 package secp256k1
 
 /*
+#cgo CFLAGS: -I.
 #cgo CFLAGS: -I./libsecp256k1
 #cgo CFLAGS: -I./libsecp256k1/src/
 #define USE_NUM_NONE
@@ -26,8 +27,8 @@ package secp256k1
 #define USE_SCALAR_8X32
 #define USE_SCALAR_INV_BUILTIN
 #define NDEBUG
-#include "./libsecp256k1/src/secp256k1.c"
-#include "./libsecp256k1/src/modules/recovery/main_impl.h"
+#include "libsecp256k1/src/secp256k1.h"
+#include "libsecp256k1/src/modules/recovery/main_impl.h"
 #include "ext.h"
 
 typedef void (*callbackFunc) (const char* msg, void* data);
